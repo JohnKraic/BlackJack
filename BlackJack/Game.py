@@ -36,7 +36,7 @@ class Game:
         for _ in range(bots_count):
             b = Player.Bot()
             self.players.append(b)
-            print('Bot', Player.Bot(), 'is created')
+            print('Bot', Player.Bot.bot_names(self), 'is created')
 
         self.player = Player.Player()
         self.player_pos = random.randint(0, self.all_players_count)
@@ -68,7 +68,7 @@ class Game:
         if isinstance(player, Player.Player):
             print('You are fall!')
         elif isinstance(player, Player.Bot):
-            print(player, 'are fall!')
+            print(player.bot_names(), 'are fall!')
         self.players.remove(player)
 
     def ask_cards(self):
@@ -112,6 +112,7 @@ class Game:
                         print(MESSAGES.get('lose').format(player))
                     elif isinstance(player, Player.Player):
                         print('You are lose!')
+        self.dealer.full_points = 0
 
     def play_with_dealer(self):
         while self.dealer.ask_card():

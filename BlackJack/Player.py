@@ -60,13 +60,14 @@ class Bot(AbstractPlayer):
         super().__init__()
         self.max_points = random.randint(17, 20)
 
-    def bot_names(self, name):
-        self.bot_name = self.random.choice(['John', 'Jack', 'Bryan', 'Daniel'])
+    def bot_names(self):
+        self.bot_name = random.choice(['John', 'Jack', 'Bryan', 'Daniel'])
+        return self.bot_name
 
     def change_bet(self, max_bet, min_bet):
         self.bet = random.randint(min_bet, max_bet)
         self.money -= self.bet
-        print(Bot.bot_names(), 'give: ', self.bet)
+        print(Bot.bot_names(self), 'give: ', self.bet)
 
     def ask_card(self):
         if self.full_points < self.max_points:
